@@ -1,0 +1,22 @@
+# @param {String} j
+# @param {String} s
+# @return {Integer}
+def num_jewels_in_stones(j, s)
+  @jewel_hash = jewel_hash(j)
+  @stone_list = stone_list(s)
+  jewel_number = 0
+
+  @stone_list.each { |e| jewel_number += 1 if @jewel_hash[e] == true }
+
+  jewel_number
+end
+
+def jewel_hash(j)
+  hash = {}
+  j.split('').each { |e|  hash[e] = true }
+  hash
+end
+
+def stone_list(s)
+  s.split('')
+end
