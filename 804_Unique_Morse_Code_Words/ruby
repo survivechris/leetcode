@@ -1,0 +1,44 @@
+# @param {String[]} words
+# @return {Integer}
+def unique_morse_representations(words)
+  @alphabet_hash = morse_code_mapping
+  @morse_code = {}
+  num_diff = 0
+
+  words.each do |w|
+    # word translate to morse code
+    morse = translate_to_morse_code(w)
+    # if it is duplicate, do not add the number
+    num_diff += 1 unless dup?(morse)
+  end
+
+  num_diff
+end
+
+def morse_code_mapping
+  morse_code = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+  aphabet_hash = {}
+
+  ("a".."z").each_with_index do |letter, i|
+      aphabet_hash[letter] = morse_code[i]
+  end
+
+  aphabet_hash
+end
+
+def translate_to_morse_code(word)
+  code = ''
+
+  word.split('').each do |letter|
+    code += @alphabet_hash[letter]
+  end
+
+  code
+end
+
+def dup?(string)
+  return true if @morse_code[string] == true
+
+  @morse_code[string] = true
+  return false
+end
