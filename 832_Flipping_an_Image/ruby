@@ -1,0 +1,27 @@
+# @param {Integer[][]} a
+# @return {Integer[][]}
+def flip_and_invert_image(a)
+  # the element has already pushed into an element of "a" array(stack)
+  # we could directly pop the element for the element of "a"
+  # and then, reverse it
+  inverse = inverse_hash
+  result = []
+
+  a.length.times do
+    temp = a.shift
+    result_element = []
+    temp.length.times do
+      result_element << inverse[temp.pop]
+    end
+    result << result_element
+  end
+
+  result
+end
+
+def inverse_hash
+  {
+    0 => 1,
+    1 => 0
+  }
+end
